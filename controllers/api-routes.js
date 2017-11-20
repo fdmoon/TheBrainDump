@@ -11,6 +11,34 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) {
+    app.get("/api/users", function(req, res) {
+        db.User.findAll({
+            include: [{
+               model: db.Post,
+                include: [db.Comment]
+            }]
+        }).then(function(dbUser) {
+            res.json(dbUser);
+        });
+    });
+
+    app.get("/api/users/:id", function(req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [db.Post]
+        }).then(function(dbUser) {
+            res.json(dbUser);
+        });
+    });
+
+    app.post("/api/users", function(req, res) {
+        db.Users.create(req.body).then(function(dbUser) {
+            res.json(dbUser);
+        });
+    });
+
 
 /*
   // GET route for getting all of the posts
