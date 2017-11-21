@@ -40,6 +40,17 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/api/users/nocomment/:userid", function(req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.userid
+            },
+            include: [db.Post]
+        }).then(function(dbUser) {
+            res.json(dbUser);
+        });
+    });    
+
     app.get("/api/users/name/:name", function(req, res) {
         db.User.findOne({
             where: {
@@ -62,6 +73,12 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/api/posts/nocomment", function(req, res) {
+        db.Post.findAll({}).then(function(dbPost) {
+            res.json(dbPost);
+        });
+    });
+
     app.get("/api/posts/:id", function(req, res) {
         var postid = req.params.id;
 
@@ -70,6 +87,16 @@ module.exports = function(app) {
                 id: postid
             },
             include: [db.Comment]
+        }).then(function(dbPost) {
+            res.json(dbPost);
+        });
+    });
+
+    app.get("/api/comments/:postid", function(req, res) {
+        db.Comment.findAll({
+            where: {
+                PostId: req.params.postid
+            }
         }).then(function(dbPost) {
             res.json(dbPost);
         });
@@ -115,6 +142,40 @@ module.exports = function(app) {
             res.json(err);
         });
     });
+
+    app.put("/api/posts/like/:id", function(req, res) {
+        db.Post.update(
+            {
+                like_count: db.Sequelize.literal('like_count + 1')
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        ).then(function(dbPost) {
+            res.json(dbPost);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    });
+
+    app.put("/api/posts/dislike/:id", function(req, res) {
+        db.Post.update(
+            {
+                dislike_count: db.Sequelize.literal('dislike_count + 1')
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        ).then(function(dbPost) {
+            res.json(dbPost);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    });    
 
     app.put("/api/comments", function(req, res) {
         db.Comment.update(
