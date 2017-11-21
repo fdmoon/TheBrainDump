@@ -39,6 +39,17 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/api/users/nocomment/:userid", function(req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.userid
+            },
+            include: [db.Post]
+        }).then(function(dbUser) {
+            res.json(dbUser);
+        });
+    });    
+
     app.get("/api/users/name/:name", function(req, res) {
         db.User.findOne({
             where: {
@@ -61,6 +72,12 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/api/posts/nocomment", function(req, res) {
+        db.Post.findAll({}).then(function(dbPost) {
+            res.json(dbPost);
+        });
+    });
+
     app.get("/api/posts/:id", function(req, res) {
         var postid = req.params.id;
 
@@ -69,6 +86,16 @@ module.exports = function(app) {
                 id: postid
             },
             include: [db.Comment]
+        }).then(function(dbPost) {
+            res.json(dbPost);
+        });
+    });
+
+    app.get("/api/comments/:postid", function(req, res) {
+        db.Comment.findAll({
+            where: {
+                PostId: req.params.postid
+            }
         }).then(function(dbPost) {
             res.json(dbPost);
         });
