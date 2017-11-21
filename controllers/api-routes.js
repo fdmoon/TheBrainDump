@@ -11,6 +11,7 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) {
+    // GET routes - find
     app.get("/api/users", function(req, res) {
         db.User.findAll({
             include: [{
@@ -23,86 +24,188 @@ module.exports = function(app) {
     });
 
     app.get("/api/users/:id", function(req, res) {
+        var userid = req.params.id;
+
         db.User.findOne({
             where: {
-                id: req.params.id
+                id: userid
             },
-            include: [db.Post]
+            include: [{
+               model: db.Post,
+                include: [db.Comment]
+            }]
         }).then(function(dbUser) {
             res.json(dbUser);
         });
     });
 
-    app.post("/api/users", function(req, res) {
-        db.Users.create(req.body).then(function(dbUser) {
+    app.get("/api/users/name/:name", function(req, res) {
+        db.User.findOne({
+            where: {
+                username: req.params.name
+            },
+            include: [{
+               model: db.Post,
+                include: [db.Comment]
+            }]
+        }).then(function(dbUser) {
             res.json(dbUser);
         });
     });
 
-
-/*
-  // GET route for getting all of the posts
-  app.get("/api/posts", function(req, res) {
-    var query = {};
-    if (req.query.author_id) {
-      query.AuthorId = req.query.author_id;
-    }
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
-    db.Post.findAll({
-      where: query,
-      include: [db.Author]
-    }).then(function(dbPost) {
-      res.json(dbPost);
+    app.get("/api/posts", function(req, res) {
+        db.Post.findAll({
+            include: [db.Comment]
+        }).then(function(dbPost) {
+            res.json(dbPost);
+        });
     });
-  });
 
-  // Get rotue for retrieving a single post
-  app.get("/api/posts/:id", function(req, res) {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
-    db.Post.findOne({
-      where: {
-        id: req.params.id
-      },
-      include: [db.Author]
-    }).then(function(dbPost) {
-      res.json(dbPost);
+    app.get("/api/posts/:id", function(req, res) {
+        var postid = req.params.id;
+
+        db.Post.findOne({
+            where: {
+                id: postid
+            },
+            include: [db.Comment]
+        }).then(function(dbPost) {
+            res.json(dbPost);
+        });
     });
-  });
 
-  // POST route for saving a new post
-  app.post("/api/posts", function(req, res) {
-    db.Post.create(req.body).then(function(dbPost) {
-      res.json(dbPost);
+    // POST routes - create
+    app.post("/api/users", function(req, res) {
+        db.User.create(req.body).then(function(err, dbUser) {
+            res.json(dbUser);
+        }).catch(function(err) {
+            res.json(err);
+        });
     });
-  });
 
-  // DELETE route for deleting posts
-  app.delete("/api/posts/:id", function(req, res) {
-    db.Post.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbPost) {
-      res.json(dbPost);
+    app.post("/api/posts", function(req, res) {
+        db.Post.create(req.body).then(function(dbPost) {
+            res.json(dbPost);
+        }).catch(function(err) {
+            res.json(err);
+        });
     });
-  });
 
-  // PUT route for updating posts
-  app.put("/api/posts", function(req, res) {
-    db.Post.update(
-      req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbPost) {
-        res.json(dbPost);
-      });
-  });
-*/
-  
+    app.post("/api/comments", function(req, res) {
+        db.Comment.create(req.body).then(function(dbComment) {
+            res.json(dbComment);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    });
+
+    // PUT routes - update
+    app.put("/api/posts", function(req, res) {
+        db.Post.update(
+            req.body,
+            {
+                where: {
+                    id: req.body.id
+                }
+            }
+        ).then(function(dbPost) {
+            res.json(dbPost);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    });
+
+    app.put("/api/comments", function(req, res) {
+        db.Comment.update(
+            req.body,
+            {
+                where: {
+                    id: req.body.id
+                }
+            }
+        ).then(function(dbComment) {
+            res.json(dbComment);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    });
+
+    // DELETE routes - delete
+    app.delete("/api/users/:id", function(req, res) {
+        var userid = req.params.id;
+        var postidOfUser = [];
+
+        db.Post.findAll({
+            where: {
+                UserId: userid
+            }
+        }).then(function(dbPost) {
+            for(i=0; i<dbPost.length; i++) {
+                postidOfUser.push(dbPost[i].id);
+            }
+
+            db.Comment.destroy({
+                where: {
+                    PostId: postidOfUser
+                }
+            }).then(function(delCnt) {
+                db.Post.destroy({
+                    where: {
+                        UserId: userid
+                    }
+                }).then(function(delCnt) {
+                    db.User.destroy({
+                        where: {
+                            id: userid
+                        }
+                    }).then(function(delCnt) {
+                        res.json(delCnt);
+                    }).catch(function(err) {
+                        res.json(err);
+                    });
+                }).catch(function(err) {
+                    res.json(err);
+                });
+            }).catch(function(err) {
+                res.json(err);
+            });
+        });
+    });
+
+    app.delete("/api/posts/:id", function(req, res) {
+        var postid = req.params.id;
+
+        db.Comment.destroy({
+            where: {
+                PostId: postid
+            }
+        }).then(function(delCnt) {
+            db.Post.destroy({
+                where: {
+                    id: postid
+                }
+            }).then(function(delCnt) {
+                res.json(delCnt);
+            }).catch(function(err) {
+                res.json(err);
+            });
+        }).catch(function(err) {
+            res.json(err);
+        });
+    });
+
+    app.delete("/api/comments/:id", function(req, res) {
+        var commentid = req.params.id;
+
+        db.Comment.destroy({
+            where: {
+                id: commentid
+            }
+        }).then(function(delCnt) {
+            res.json(delCnt);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    });
 };
+
