@@ -20,7 +20,7 @@ var enoughDislikes = 10;
 
 // Timers
 // =============================================================
-module.exports = function() {
+module.exports = function(io) {
 	fs.writeFile(logFile, "", function (err) {
 		if(err)	throw err;
 	});
@@ -41,7 +41,8 @@ module.exports = function() {
             }
         });
 
-		// console.log(moment().format());
+        // console.log(moment().format());
+        // io.emit('chat message', "Timer invoked...");
 
 	}, timePeriod);	// cf. clearInterval(timerId);
 
