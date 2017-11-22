@@ -6,6 +6,7 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
   <section class="hero is-primary is large is bold">
@@ -14,7 +15,7 @@
         <div class="columns">
           <div class=" column is-two-fifths">
             <h1 class="title">
-              The Brain Dump.
+              The Brain Dump. (Signup)
             </h1>
             <h2 class="subtitle">
               Where you say the things you can't say on Facebook
@@ -30,7 +31,7 @@
       <div class="field">
         <label class="label">Username</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input is-success" type="text" placeholder="Text input" value="">
+          <input id="usernameInput" class="input is-success" type="text" placeholder="Username" value="">
         <span class="icon is-small is-left">
           <i class="fa fa-user"></i>
         </span>
@@ -40,7 +41,7 @@
       </div>
       <p class="help is-success">This username is available</p>
     </div>
-    <div class="field">
+<!--     <div class="field">
       <label class="label">Email</label>
       <div class="control has-icons-left has-icons-right">
         <input class="input is-danger" type="email" placeholder="Email input" value="">
@@ -52,11 +53,11 @@
         </span>
       </div>
       <p class="help is-danger">This email is invalid</p>
-    </div>
+    </div> -->
     <div class="field">
         <label class="label">Password</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Password input">
+          <input id="passwordInput" class="input" type="text" placeholder="Password input">
         </div>
       </div>
     <div class="field">
@@ -69,7 +70,7 @@
     </div>
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link">Submit</button>
+        <button id="submit" class="button is-link">Submit</button>
       </div>
       <div class="control">
         <button class="button is-text">Cancel</button>
@@ -78,4 +79,8 @@
     </div>
   </section>  
   </body>
+
+  <script type="text/javascript" src="/js/sign_up.js"></script>
+
 </html>
+

@@ -12,6 +12,28 @@ var passport = require("../config/passport");
 // Routes
 // =============================================================
 module.exports = function(app) {
+    // Using the passport.authenticate middleware with our local strategy.
+    // If the user has valid login credentials, send them to the main page.
+    // Otherwise the user will be sent an error
+    app.post("/api/login", passport.authenticate("local"), function(req, res) {
+        res.json("/main");
+    });
+
+    // Route for signing up a user.
+    app.post("/api/signup", function(req, res) {
+        db.User.create(req.body).then(function(dbUser) {
+            res.redirect(307, "/api/login");
+        }).catch(function(err) {
+            res.status(500).json(err);
+        });
+    });
+
+    // Route for logging user out
+    app.get("/logout", function(req, res) {
+        req.logout();
+        res.redirect("/");
+    });
+
     // GET routes - find
     app.get("/api/users", function(req, res) {
         db.User.findAll({
@@ -92,6 +114,17 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/api/posts/category/:category", function(req, res) {
+        db.Post.findAll({
+            where: {
+                category: req.params.category
+            },
+            include: [db.Comment]
+        }).then(function(dbPost) {
+            res.json(dbPost);
+        });
+    });
+
     app.get("/api/comments/:postid", function(req, res) {
         db.Comment.findAll({
             where: {
@@ -103,13 +136,13 @@ module.exports = function(app) {
     });
 
     // POST routes - create
-    app.post("/api/users", function(req, res) {
-        db.User.create(req.body).then(function(err, dbUser) {
-            res.json(dbUser);
-        }).catch(function(err) {
-            res.json(err);
-        });
-    });
+    // app.post("/api/users", function(req, res) {
+    //     db.User.create(req.body).then(function(dbUser) {
+    //         res.json(dbUser);
+    //     }).catch(function(err) {
+    //         res.json(err);
+    //     });
+    // });
 
     app.post("/api/posts", function(req, res) {
         db.Post.create(req.body).then(function(dbPost) {
