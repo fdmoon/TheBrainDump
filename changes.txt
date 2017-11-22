@@ -1,0 +1,8 @@
+Jenna Changes:
+
+html-routes.js:
+- changed HTML pathways from those in the authenticate source code to those created by Jacob.
+- changed redirect to index.html page if user is already showing as authenticated
+      e.g,   if (req.user) {
+              res.redirect("/index");
+              }
