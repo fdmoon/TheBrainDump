@@ -12,52 +12,27 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 // =============================================================
 module.exports = function(app) {
 
-/*
-  // Each of the below routes just handles the HTML page that the user gets sent to.
+    app.get("/", function(req, res) {
+        // If the user already has an account send them to the main page
+        if (req.user) {
+            res.redirect("/main");
+        }
+        res.sendFile(path.join(__dirname, "../public/sign_up.html"));
+    });
 
-  // index route loads view.html
-  app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/blog.html"));
-  });
+    app.get("/login", function(req, res) {
+        // If the user already has an account send them to the main page
+        if (req.user) {
+            res.redirect("/main");
+        }
+        res.sendFile(path.join(__dirname, "../public/log_in.html"));
+    });
 
-  // cms route loads cms.html
-  app.get("/cms", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/cms.html"));
-  });
-
-  // blog route loads blog.html
-  app.get("/blog", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/blog.html"));
-  });
-
-  // authors route loads author-manager.html
-  app.get("/authors", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/author-manager.html"));
-  });
-*/
-
-// NEW -
-app.get("/", function(req, res) {
-  // If the user already has an account send them to the members page
-  if (req.user) {
-    res.redirect("/main");
-  }                                 // Changed the pathway from source code to group project html pages
-  res.sendFile(path.join(__dirname, "../views/sign_up.html"));
-});
-
-app.get("/login", function(req, res) {
-  // If the user already has an account send them to the members page
-  if (req.user) {
-    res.redirect("/main");
-  }                                 // Changed the pathway from source code to group project html pages
-  res.sendFile(path.join(__dirname, "..views/log_in.html"));
-});
-
-// Here we've add our isAuthenticated middleware to this route.
-// If a user who is not logged in tries to access this route they will be redirected to the signup page
-app.get("/main", isAuthenticated, function(req, res) {
-                                    // Changed the pathway from source code to group project html pages
-  res.sendFile(path.join(__dirname, "../public/main.html"));
-});
+    // Here we've add our isAuthenticated middleware to this route.
+    // If a user who is not logged in tries to access this route they will be redirected to the signup page
+    app.get("/main", isAuthenticated, function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/main.html"));
+    });
 
 };
+

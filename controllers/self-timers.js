@@ -7,6 +7,7 @@
 
 // Requiring our models
 var moment = require("moment");
+var fs = require("fs");
 var db = require("../models");
 
 // Timers
@@ -28,7 +29,7 @@ module.exports = function() {
             }
         });
 
-		console.log(moment().format());
+		// console.log(moment().format());
 
 	}, 10000);	// cf. clearInterval(timerId);
 
