@@ -33,5 +33,6 @@ module.exports = function(app) {
     app.get("/main", isAuthenticated, function(req, res) {
         res.sendFile(path.join(__dirname, "../public/main.html"));
     });
+
 };
 

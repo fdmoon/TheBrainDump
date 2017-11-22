@@ -71,7 +71,7 @@ module.exports = function(app) {
         }).then(function(dbUser) {
             res.json(dbUser);
         });
-    });    
+    });
 
     app.get("/api/users/name/:name", function(req, res) {
         db.User.findOne({
@@ -136,14 +136,6 @@ module.exports = function(app) {
     });
 
     // POST routes - create
-    // app.post("/api/users", function(req, res) {
-    //     db.User.create(req.body).then(function(dbUser) {
-    //         res.json(dbUser);
-    //     }).catch(function(err) {
-    //         res.json(err);
-    //     });
-    // });
-
     app.post("/api/posts", function(req, res) {
         db.Post.create(req.body).then(function(dbPost) {
             res.json(dbPost);
@@ -208,7 +200,7 @@ module.exports = function(app) {
         }).catch(function(err) {
             res.json(err);
         });
-    });    
+    });
 
     app.put("/api/comments", function(req, res) {
         db.Comment.update(
