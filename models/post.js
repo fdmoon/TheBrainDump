@@ -27,6 +27,10 @@ module.exports = function(sequelize, DataTypes) {
         dislike_count: {
             type: DataTypes.INTEGER,
             defaultValue: 0
+        }, 
+        extended: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     });
 
