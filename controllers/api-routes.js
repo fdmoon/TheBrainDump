@@ -49,7 +49,7 @@ module.exports = function(app) {
         }).then(function(dbUser) {
             res.json(dbUser);
         });
-    });    
+    });
 
     app.get("/api/users/name/:name", function(req, res) {
         db.User.findOne({
@@ -175,7 +175,7 @@ module.exports = function(app) {
         }).catch(function(err) {
             res.json(err);
         });
-    });    
+    });
 
     app.put("/api/comments", function(req, res) {
         db.Comment.update(
