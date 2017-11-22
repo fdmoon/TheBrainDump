@@ -40,7 +40,7 @@ module.exports = function(app) {
 app.get("/", function(req, res) {
   // If the user already has an account send them to the members page
   if (req.user) {
-    res.redirect("/index");
+    res.redirect("/main");
   }                                 // Changed the pathway from source code to group project html pages
   res.sendFile(path.join(__dirname, "../views/sign_up.html"));
 });
@@ -48,16 +48,16 @@ app.get("/", function(req, res) {
 app.get("/login", function(req, res) {
   // If the user already has an account send them to the members page
   if (req.user) {
-    res.redirect("/index");
+    res.redirect("/main");
   }                                 // Changed the pathway from source code to group project html pages
   res.sendFile(path.join(__dirname, "..views/log_in.html"));
 });
 
 // Here we've add our isAuthenticated middleware to this route.
 // If a user who is not logged in tries to access this route they will be redirected to the signup page
-app.get("/index", isAuthenticated, function(req, res) {
+app.get("/main", isAuthenticated, function(req, res) {
                                     // Changed the pathway from source code to group project html pages
-  res.sendFile(path.join(__dirname, "../public/index.html"));
+  res.sendFile(path.join(__dirname, "../public/main.html"));
 });
 
 };
