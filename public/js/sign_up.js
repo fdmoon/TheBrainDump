@@ -3,10 +3,14 @@ $(document).ready(function() {
   $("#submit").on("click", function() {
     var userData = {
       username: $("#usernameInput").val().trim(),
-      password: $("#passwordInput").val().trim()
+      password: $("#passwordInput").val().trim(),
+      terms:    $('input[type=checkbox]').prop('checked')
     };
 
-    if (!userData.username || !userData.password) {
+    if (!userData.terms) {
+      alert("Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy");
+      return;
+    } else if (!userData.username || !userData.password) {
       return;
     }
 
@@ -20,9 +24,8 @@ $(document).ready(function() {
     });
 
     $("#usernameInput").val("");
-    $("#passwordInput").val("");    
+    $("#passwordInput").val("");
 
   });
 
 });
-
