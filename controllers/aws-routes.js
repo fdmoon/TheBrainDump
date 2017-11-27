@@ -53,7 +53,7 @@ module.exports = function(app) {
 
         s3.deleteObject(s3Params, function (err, data) {
             if (data) {
-                console.log("@ File deleted successfully: " + JSON.stringify(data, null, 4));
+                console.log("@ File deleted successfully: " + fileName);
                 res.json(true);
             }
             else {
