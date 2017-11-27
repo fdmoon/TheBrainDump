@@ -48,6 +48,7 @@ app.use(passport.session());
 require("./controllers/html-routes.js")(app);
 require("./controllers/api-routes.js")(app);
 require("./controllers/live_chat.js")(io);
+require("./controllers/new_chat.js")(io);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

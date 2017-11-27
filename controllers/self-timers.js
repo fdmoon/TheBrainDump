@@ -59,7 +59,7 @@ module.exports = function(io) {
 	}
 
 	function checkEnoughLikes(post) {
-		if((!post.extended) && (post.like_count >= enoughLikes)) {
+		if((!post.extended) && ((post.like_count - post.dislike_count) >= enoughLikes)) {
 	        db.Post.update(
 	            {
 	                timeout: db.Sequelize.literal('timeout + 24'),
@@ -79,7 +79,7 @@ module.exports = function(io) {
 	}
 
 	function checkEnoughDislikes(post) {
-		if(post.dislike_count >= enoughDislikes) {
+		if((post.dislike_count - post.like_count) >= enoughDislikes) {
 			// Delete the post
 			deletePost(post, "DELETE (Enough-dislikes)");
 		}

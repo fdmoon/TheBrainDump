@@ -38,5 +38,9 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/live_chat.html"));
     });
 
+    app.get("/newchat", /*isAuthenticated,*/ function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/new_chat.html"));
+    });    
+
 };
 
