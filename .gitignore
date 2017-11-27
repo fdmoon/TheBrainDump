@@ -6,6 +6,9 @@
 # production
 /build
 
+# process.env
+.env
+
 # misc
 .DS_Store
 *.log
