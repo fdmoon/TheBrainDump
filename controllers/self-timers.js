@@ -5,14 +5,26 @@
 // Dependencies
 // =============================================================
 
-// Requiring our models
 var moment = require("moment");
 var fs = require("fs");
+var path = require("path");
+
+// Requiring our models
 var db = require("../models");
+
+var logFile = path.join(__dirname, "./self-timer.log");
+
+var timePeriod = 60 * 1000;
+var enoughLikes = 10;
+var enoughDislikes = 10;
 
 // Timers
 // =============================================================
-module.exports = function() {
+module.exports = function(io) {
+	fs.writeFile(logFile, "", function (err) {
+		if(err)	throw err;
+	});
+
 	var timerId = setInterval(function() {
 		db.Post.findAll({}).then(function(dbPost) {
             // console.log(JSON.stringify(dbPost, null, 4));
@@ -29,9 +41,10 @@ module.exports = function() {
             }
         });
 
-		// console.log(moment().format());
+        // console.log(moment().format());
+        // io.emit('chat message', "Timer invoked...");
 
-	}, 10000);	// cf. clearInterval(timerId);
+	}, timePeriod);	// cf. clearInterval(timerId);
 
 	function checkTimeout(post) {
     	var diffTime = moment().diff(moment(post.updatedAt), "hours");
@@ -40,21 +53,67 @@ module.exports = function() {
     	// console.log(diffTime);
 
     	if(diffTime > post.timeout) {
-			// console.log("Timeout!");
 			// Delete the post
+			deletePost(post, "DELETE (End-of-life)");
     	}
-    	else 
-    	{
-    		// console.log("Timeout left:" + (post.timeout - diffTime))
-    	}		
 	}
 
 	function checkEnoughLikes(post) {
-
+		if((!post.extended) && ((post.like_count - post.dislike_count) >= enoughLikes)) {
+	        db.Post.update(
+	            {
+	                timeout: db.Sequelize.literal('timeout + 24'),
+	                extended: true
+	            },
+	            {
+	                where: {
+	                    id: post.id
+	                }
+	            }
+	        ).then(function(dbPost) {
+	            logToFile("UPDATE (Enough-Likes)", JSON.stringify(post, null, 4), "Success");
+	        }).catch(function(err) {
+	            logToFile("UPDATE (Enough-Likes)", JSON.stringify(post, null, 4), "Failure");
+	        });
+		}
 	}
 
 	function checkEnoughDislikes(post) {
-
+		if((post.dislike_count - post.like_count) >= enoughDislikes) {
+			// Delete the post
+			deletePost(post, "DELETE (Enough-dislikes)");
+		}
 	}
+
+	function deletePost(post, title) {
+        db.Comment.destroy({
+            where: {
+                PostId: post.id
+            }
+        }).then(function(delCnt) {
+            db.Post.destroy({
+                where: {
+                    id: post.id
+                }
+            }).then(function(delCnt) {
+            	logToFile(title, JSON.stringify(post, null, 4), "Success");
+            }).catch(function(err) {
+            	logToFile(title, JSON.stringify(post, null, 4), "Failure to delete this");
+            });
+        }).catch(function(err) {
+            logToFile(title, JSON.stringify(post, null, 4), "Failure to delete comments");
+        });		
+	}
+
+	function logToFile(title, body, result) {
+    	var logString = "[" + moment().format() + "] ";
+    	logString += title + "\n";
+    	logString += body + "\n";
+    	logString += "=> " + result + "\n";
+
+		fs.appendFile(logFile, logString, function (err) {
+			if(err)	throw err;
+		});
+	}	
 };
 
