@@ -10,7 +10,10 @@
 
 	<input type="file" id="file-input">
 	<p id="status">Please select a file</p>
-	<img id="preview" src="/images/default.png">
+	<button id="btn-del">Delete</button>
+	<br><br>
+
+	<img id="preview" src="/images/default.png" style="max-width: 500px">
 
 	<form method="POST" action="/save-details">
 		<input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png">
@@ -55,6 +58,21 @@
 			};
 			xhr.send(file);
 		}
+
+		$("#btn-del").on("click", function() {
+			const files = document.getElementById('file-input').files;
+			const file = files[0];
+			if(file == null){
+				return alert('No file selected.');
+			}
+
+			$.ajax({
+				url: `/sign-s3/${file.name}`, 
+				method: "DELETE",
+			}).done(function(data) {
+				console.log(data);
+			});
+		});
 
 	</script>
 </body>
