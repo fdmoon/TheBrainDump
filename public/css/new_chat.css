@@ -73,7 +73,7 @@ ul {
 }
 
 .login.page .title {
-  font-size: 200%;
+  font-size: 150%;
 }
 
 .login.page .usernameInput {
@@ -95,7 +95,7 @@ ul {
 /* Font */
 
 .messages {
-  font-size: 150%;
+  font-size: 100%;
 }
 
 .inputMessage {
@@ -104,7 +104,7 @@ ul {
 
 .log {
   color: gray;
-  font-size: 70%;
+  font-size: 80%;
   margin: 5px;
   text-align: center;
 }
