@@ -10,6 +10,7 @@
 
 	<input type="file" id="file-input">
 	<p id="status">Please select a file</p>
+	<button id="btn-add">Upload</button>
 	<button id="btn-del">Delete</button>
 	<br><br>
 
@@ -24,14 +25,12 @@
 
 	<script type="text/javascript">
 		$("#file-input").on("change", function() {
-			const files = document.getElementById('file-input').files;
-			const file = files[0];
+			const file = $('#file-input').get()[0].files[0];
 			if(file == null){
 				return alert('No file selected.');
 			}
 			console.log(file);
 			console.log(file.type);
-			getSignedRequest(file);
 		});
 
 		function getSignedRequest(file){
@@ -67,6 +66,14 @@
 								$("#fileview").append(audio);
 								break;
 							case "video":
+								var video = $("<video controls>");
+								video.attr("width", "320px");
+								video.attr("height", "240px");
+								var source = $("<source>");
+								source.attr("src", url);
+								// source.attr("type", file.type);
+								video.append(source);
+								$("#fileview").append(video);
 								break;
 						}
 						// document.getElementById('avatar-url').value = url;
@@ -78,6 +85,16 @@
 			};
 			xhr.send(file);
 		}
+
+		$("#btn-add").on("click", function() {
+			const files = document.getElementById('file-input').files;
+			const file = files[0];
+			if(file == null){
+				return alert('No file selected.');
+			}
+
+			getSignedRequest(file);
+		});
 
 		$("#btn-del").on("click", function() {
 			const files = document.getElementById('file-input').files;
