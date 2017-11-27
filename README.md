@@ -8,7 +8,7 @@ Our idea is to make a bulletin board/reddit kind of social media app for all the
 
 * Ryan Hayden: Lead, Frontend
 * Neil Dhand: Backend
-* Felix Moon: Backend
+* Felix Moon: Backend / Merging Code
 * Jacob Chaffee: Frontend 
 * Jenna King: Backend / Troubleshoot
 
