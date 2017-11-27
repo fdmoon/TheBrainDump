@@ -29,3 +29,8 @@ $(document).ready(function() {
   });
 
 });
+
+// Cancel button is pressed
+document.getElementById("cancelme").onclick = function () {
+    location.href = "main.html";
+};
