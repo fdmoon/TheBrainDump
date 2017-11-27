@@ -34,5 +34,9 @@ $(document).ready(function() {
       console.log(err);
     });
   }
-
 });
+
+// Cancel button is pressed
+document.getElementById("cancelme").onclick = function () {
+    location.href = "main.html";
+};
