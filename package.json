@@ -22,12 +22,9 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "bulma": "^0.6.1",
-<<<<<<< HEAD
     "express": "^4.16.2",
-=======
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
->>>>>>> c39e75d91551e463ea53b5de307ae418d3251d4e
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "moment": "^2.19.2",
