@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
+
   <body>
   <section class="hero is-primary is large is bold">
     <div class="hero-body">
@@ -26,35 +27,42 @@
     </div>
   </section>
   <br>
+
   <section>
     <div class="container">
       <div class="field">
-        <label class="label">Username</label>
-        <div class="control has-icons-left has-icons-right">
-          <input class="input" type="text" placeholder="Username input" value="">
-        <span class="icon is-small is-left">
-          <i class="fa fa-user"></i>
-        </span>
-      </div>
-    </div>
+        <form class="login">
+          <div class="form-group">
+            <label class="label">Username</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" id="username-input" type="text" placeholder="Username input" value="">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-user"></i>
+                    </span>
+              </div>
+          </div>
+
     <div class="field">
+      <div class="form-group">
       <label class="label">Password</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="email" placeholder="Password input" value="">
+        <input class="input" id="password-input" type="password" placeholder="Password input" value="">
         <span class="icon is-small is-left">
           <i class="fa fa-lock"></i>
         </span>
       </div>
     </div>
+  </div>
+
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link">Log In</button>
+        <button class="button is-link" id="submit">Log In</button>
       </div>
       <div class="control">
         <button class="button is-text" id="cancelme">Cancel</button>
       </div>
     </div>
-    </div>
+  </form>
   </section>
   </body>
     <script type="text/javascript" src="/js/log_in.js"></script>

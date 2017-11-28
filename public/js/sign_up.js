@@ -19,6 +19,11 @@ $(document).ready(function() {
       // If there's an error, handle it by throwing up a boostrap alert
     }).catch(function(err) {
       console.log(err.responseJSON);
+      // alert(err.responseJSON.errors[0].message);
+      if (err.responseJSON.errors[0].message === "username must be unique") {
+        $("#usernameInput").addClass("is-danger");
+        $("#note").text(err.responseJSON.errors[0].message);
+      }
       // $("#alert .msg").text(err.responseJSON);
       // $("#alert").fadeIn(500);
     });
