@@ -25,9 +25,9 @@
             &nbsp;
           </div>
           <div id="user-div" class="column">
-            <a class="button is-primary is-inverted">Log In</a>
+            <a class="button is-primary is-inverted" id="login">Log In</a>
             <br>
-            <a href="#">New User? Sign Up Here</a>
+            <a href="sign_up.html">New User? Sign Up Here</a>
           </div>
         </div>
       </div>
@@ -120,17 +120,20 @@
     </div>
   </section>
 
-  <script type="text/javascript">
+    <script type="text/javascript" src="/js/main.js">
+
     if (window.showModelessDialog) {        // Internet Explorer
         showModelessDialog ("new_chat.html", window, "dialogWidth:500px; dialogHeight:800px");
-    } 
+    }
     else {
         window.open ("new_chat.html", "","width=500, height=800px, alwaysRaised=yes");
-    }    
+    }
+
   </script>
+
   </body>
 </html>
-
+<!-- 
 <script>
 //creating variables for html elements
   var like = document.getElementById("like");
@@ -165,4 +168,4 @@
       //code to delete post
     }
   };
-</script>
+</script> -->
