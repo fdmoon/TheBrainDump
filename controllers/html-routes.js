@@ -15,7 +15,15 @@ module.exports = function(app) {
     app.get("/", function(req, res) {
         // If the user already has an account send them to the main page
         if (req.user) {
-            res.redirect("/main");
+            res.redirect('/main');
+        }
+        res.sendFile(path.join(__dirname, "../public/sign_up.html"));
+    });
+
+    app.get("/signup", function(req, res) {
+        // If the user already has an account send them to the main page
+        if (req.user) {
+            res.redirect('/main');
         }
         res.sendFile(path.join(__dirname, "../public/sign_up.html"));
     });
@@ -23,7 +31,7 @@ module.exports = function(app) {
     app.get("/login", function(req, res) {
         // If the user already has an account send them to the main page
         if (req.user) {
-            res.redirect("/main");
+            res.redirect('/main');
         }
         res.sendFile(path.join(__dirname, "../public/log_in.html"));
     });
@@ -44,6 +52,7 @@ module.exports = function(app) {
 
     app.get("/uploads3", /*isAuthenticated,*/ function(req, res) {
         res.sendFile(path.join(__dirname, "../public/upload_S3.html"));
-    });    
+    });
 
 };
+

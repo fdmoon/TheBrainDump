@@ -14,9 +14,9 @@
     <div class="hero-body">
       <div class="container">
         <div class="columns">
-          <div class=" column is-two-fifths">
+          <div class=" column is-three-fifths">
             <h1 class="title">
-              The Brain Dump.
+              Welcome to The Brain Dump. (Log in)
             </h1>
             <h2 class="subtitle">
               Where you say the things you can't say on Facebook
@@ -31,39 +31,42 @@
   <section>
     <div class="container">
       <div class="field">
-        <form class="login">
-          <div class="form-group">
-            <label class="label">Username</label>
-              <div class="control has-icons-left has-icons-right">
-                <input class="input" id="username-input" type="text" placeholder="Username input" value="">
-                    <span class="icon is-small is-left">
-                        <i class="fa fa-user"></i>
-                    </span>
-              </div>
-          </div>
+        <label class="label">Username</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" id="username-input" type="text" placeholder="Username" value="">
+          <span class="icon is-small is-left">
+            <i class="fa fa-user"></i>
+          </span>
+        </div>
+      </div>
 
-    <div class="field">
-      <div class="form-group">
-      <label class="label">Password</label>
-      <div class="control has-icons-left has-icons-right">
-        <input class="input" id="password-input" type="password" placeholder="Password input" value="">
-        <span class="icon is-small is-left">
-          <i class="fa fa-lock"></i>
-        </span>
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" id="password-input" type="password" placeholder="Password" value="">
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+      </div>
+      <p class="help is-danger" id="note"></p>
+
+      <div class="field is-grouped" style="margin-top: 20px">
+        <div class="control">
+          <button class="button is-link" id="submit">Log In</button>
+        </div>
+        <div class="control">
+          <button class="button is-text" id="cancelme">Cancel</button>
+        </div>
+      </div>
+
+      <div style="margin-top: 25px">
+        <a href="/signup">New User? Sign Up Here</a>
       </div>
     </div>
-  </div>
-
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-link" id="submit">Log In</button>
-      </div>
-      <div class="control">
-        <button class="button is-text" id="cancelme">Cancel</button>
-      </div>
-    </div>
-  </form>
   </section>
+
+  <script type="text/javascript" src="/js/log_in.js"></script>
+
   </body>
-    <script type="text/javascript" src="/js/log_in.js"></script>
 </html>
