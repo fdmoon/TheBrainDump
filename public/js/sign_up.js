@@ -1,6 +1,9 @@
 $(document).ready(function() {
 
   $("#submit").on("click", function() {
+    $("#usernameInput").removeClass("is-danger");
+    $("#note").empty();
+
     var userData = {
       username: $("#usernameInput").val().trim(),
       password: $("#passwordInput").val().trim(),

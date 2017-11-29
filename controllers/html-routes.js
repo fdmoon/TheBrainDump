@@ -36,6 +36,10 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/log_in.html"));
     });
 
+    app.get("/login-failureRedirect", function(req, res) {
+        res.status(503).json(req.flash('error'));
+    });    
+
     // Here we've add our isAuthenticated middleware to this route.
     // If a user who is not logged in tries to access this route they will be redirected to the signup page
     app.get("/main", isAuthenticated, function(req, res) {
@@ -52,6 +56,10 @@ module.exports = function(app) {
 
     app.get("/uploads3", /*isAuthenticated,*/ function(req, res) {
         res.sendFile(path.join(__dirname, "../public/upload_S3.html"));
+    });
+    
+    app.get("/comments", /*isAuthenticated,*/ function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/comments.html"));
     });
 
 };
