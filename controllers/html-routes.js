@@ -53,6 +53,10 @@ module.exports = function(app) {
     app.get("/uploads3", /*isAuthenticated,*/ function(req, res) {
         res.sendFile(path.join(__dirname, "../public/upload_S3.html"));
     });
+    
+    app.get("/comments", /*isAuthenticated,*/ function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/comments.html"));
+    });
 
 };
 
