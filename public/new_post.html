@@ -43,10 +43,10 @@
               <div class="select is-fullwidth">
                 <select id="file-input" type="file">
                   <option value="1">Life</option>
-                  <option value="2">Gaming</option>
+                  <!-- <option value="2">Gaming</option> -->
                   <option value="3">Random</option>
-                  <option value="4">Funny</option>
-                  <option value="5">New Category</option>
+                  <!-- <option value="4">Funny</option>
+                  <option value="5">New Category</option> -->
                 </select>
               </div>
             </div>
@@ -62,7 +62,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <textarea class="textarea" placeholder="Create a New Post"></textarea>
+              <textarea id="file-input" class="textarea" type="file" placeholder="Create a New Post"></textarea>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <button class="button is-primary">
+              <button id="submit-post-button" class="button is-primary">
                 Brain Dump It!
               </button>
             </div>
@@ -86,26 +86,26 @@
   </body>
 
   <script>
-    $(document).ready(function() {
+    // $(document).ready(function() {
   
-      var newcategory = $("<div class='field-label is-normal'><label class='label'>New Category</label></div><div class='field-body'><div class='field'><div class='control'><input class='input' placeholder='Create a New Category'></div></div></div>");
+    //   var newcategory = $("<div class='field-label is-normal'><label class='label'>New Category</label></div><div class='field-body'><div class='field'><div class='control'><input class='input' placeholder='Create a New Category'></div></div></div>");
 
-      $('#category-type').change(function(){
-        console.log("category type change recognition");
+    //   $('#category-type').change(function(){
+    //     console.log("category type change recognition");
     
-        var checked = $('option');
-        for (var i = 0; i < checked.length; i++) {
-          if (checked[i].selected === true) {
+    //     var checked = $('option');
+    //     for (var i = 0; i < checked.length; i++) {
+    //       if (checked[i].selected === true) {
 
-            if (checked[i].value == 5) {
-            console.log('New category');
-            $('#new-category-input-div').append(newcategory);
-            }
-          }
-        }
+    //         if (checked[i].value == 5) {
+    //         console.log('New category');
+    //         $('#new-category-input-div').append(newcategory);
+    //         }
+    //       }
+    //     }
          
-      });
+    //   });
 
-    });
+    // });
   </script>
 </html>
