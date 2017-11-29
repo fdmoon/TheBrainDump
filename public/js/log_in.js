@@ -4,6 +4,11 @@ $(document).ready(function() {
 
   // Submit button is pressed
   $("#submit").on("click", function() {
+    usernameInput.removeClass("is-danger");
+    passwordInput.removeClass("is-danger");
+    $("#note-u").empty();
+    $("#note-p").empty();
+        
     var userData = {
       username: usernameInput.val().trim(),
       password: passwordInput.val().trim()
@@ -26,12 +31,18 @@ $(document).ready(function() {
       username: username,
       password: password
     }).then(function(data) {
+      console.log(data);
       window.location.replace(data);
       // If there's an error, log the error
     }).catch(function(err) {
-      usernameInput.addClass("is-danger");
-      passwordInput.addClass("is-danger");
-      $("#note").text(err.responseText);
+      if(err.responseJSON[0].indexOf("username") !== -1) {
+        usernameInput.addClass("is-danger");
+        $("#note-u").text(err.responseJSON[0]);
+      }
+      else if(err.responseJSON[0].indexOf("password") !== -1) {
+        passwordInput.addClass("is-danger");
+        $("#note-p").text(err.responseJSON[0]);
+      }
     });
   }
 
