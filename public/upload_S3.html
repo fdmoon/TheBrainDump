@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>upload test to AWS S3</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>upload test to AWS S3</h1>
+	<hr>
+
+	<input type="file" id="file-input">
+	<p id="status">Please select a file</p>
+	<button id="btn-add">Upload</button>
+	<button id="btn-del">Delete</button>
+	<br><br>
+
+	<div id="fileview"></div>
+
+<!-- 	<form method="POST" action="/save-details">
+		<input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png">
+		<input type="text" name="username" placeholder="Username"><br>
+		<input type="text" name="full-name" placeholder="Full name"><br><br>
+		<input type="submit" value="Update profile">
+	</form> -->
+
+	<script type="text/javascript">
+		$("#file-input").on("change", function() {
+			const file = $('#file-input').get()[0].files[0];
+			if(file == null){
+				return alert('No file selected.');
+			}
+			console.log(file);
+			console.log(file.type);
+		});
+
+		function getSignedRequest(file){
+			$.ajax({
+				url: `/sign-s3?file-name=${file.name}&file-type=${file.type}`,
+				method: "GET",
+			}).done(function(res) {
+				console.log(res);
+				uploadFile(file, res.signedRequest, res.url);
+			});
+		}
+
+		function uploadFile(file, signedRequest, url){
+			const xhr = new XMLHttpRequest();
+			xhr.open('PUT', signedRequest);
+			xhr.onreadystatechange = () => {
+				if(xhr.readyState === 4){
+					if(xhr.status === 200){
+						var type = file.type.split('/');
+						switch(type[0]) {
+							case "image":
+								var img = $("<img>");
+								img.attr("src", url);
+								img.attr("style", "max-width: 500px");
+								$("#fileview").append(img);
+								break;
+							case "audio":
+								var audio = $("<audio controls>");
+								var source = $("<source>");
+								source.attr("src", url);
+								// source.attr("type", file.type);
+								audio.append(source);
+								$("#fileview").append(audio);
+								break;
+							case "video":
+								var video = $("<video controls>");
+								video.attr("width", "320px");
+								video.attr("height", "240px");
+								var source = $("<source>");
+								source.attr("src", url);
+								// source.attr("type", file.type);
+								video.append(source);
+								$("#fileview").append(video);
+								break;
+						}
+						// document.getElementById('avatar-url').value = url;
+					}
+					else{
+						alert('Could not upload file.');
+					}
+				}
+			};
+			xhr.send(file);
+		}
+
+		$("#btn-add").on("click", function() {
+			const files = document.getElementById('file-input').files;
+			const file = files[0];
+			if(file == null){
+				return alert('No file selected.');
+			}
+
+			getSignedRequest(file);
+		});
+
+		$("#btn-del").on("click", function() {
+			const files = document.getElementById('file-input').files;
+			const file = files[0];
+			if(file == null){
+				return alert('No file selected.');
+			}
+
+			$.ajax({
+				url: `/sign-s3/${file.name}`, 
+				method: "DELETE",
+			}).done(function(data) {
+				if(data === true) {
+					$("#fileview").empty();
+				}
+			});
+		});
+
+	</script>
+</body>
+</html>
+

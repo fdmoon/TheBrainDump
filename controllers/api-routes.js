@@ -16,7 +16,8 @@ module.exports = function(app) {
     // If the user has valid login credentials, send them to the main page.
     // Otherwise the user will be sent an error
     app.post("/api/login", passport.authenticate("local"), function(req, res) {
-        res.json("/main");
+        // res.json(`/main?user_id=${req.user.dataValues.id}`);
+        res.json(`/main?user_id=${req.user.dataValues.id}&user_name=${req.user.dataValues.username}`);
     });
 
     // Route for signing up a user.
@@ -31,7 +32,7 @@ module.exports = function(app) {
     // Route for logging user out
     app.get("/logout", function(req, res) {
         req.logout();
-        res.redirect("/");
+        res.redirect("/login");
     });
 
     // GET routes - find
