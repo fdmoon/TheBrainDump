@@ -25,9 +25,10 @@
             &nbsp;
           </div>
           <div id="user-div" class="column">
-            <a class="button is-primary is-inverted">Log In</a>
+            <a class="button is-primary is-inverted" id="login">Log In</a>
+            <a class="button is-primary is-inverted" href="/logout">Logout</a>
             <br>
-            <a href="#">New User? Sign Up Here</a>
+            <a href="sign_up.html">New User? Sign Up Here</a>
           </div>
         </div>
       </div>
@@ -68,7 +69,7 @@
                   <nav class="level is-mobile">
                     <div class="level-left">
                       <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-comments"></i></span>
+                        <span onclick="location.href='/comments.html'" class="icon is-small"><i class="fa fa-comments"></i></span>
                       </a>
                       <a class="level-item">
                         <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
@@ -99,7 +100,7 @@
                   <nav class="level is-mobile">
                     <div class="level-left">
                       <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-comments"></i></span>
+                        <span onclick="location.href='/comments.html'" class="icon is-small"><i class="fa fa-comments"></i></span>
                       </a>
                       <a class="level-item">
                         <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
@@ -118,13 +119,51 @@
     </div>
   </section>
 
+  <script type="text/javascript" src="/js/main.js"></script>
+
   <script type="text/javascript">
-    if (window.showModelessDialog) {        // Internet Explorer
-        showModelessDialog ("new_chat.html", window, "dialogWidth:500px; dialogHeight:800px");
-    } 
+    var userId;
+    var userName;
+
+    var url = window.location.search;
+
+    if(url.indexOf("&") !== -1) {
+      var search = url.split("&");
+
+      if (search[0].indexOf("?user_id=") !== -1) {
+        userId = search[0].split("=")[1];
+      }
+      else {
+        userId = 0;
+      }
+
+      if (search[1].indexOf("user_name=") !== -1) {
+        userName = search[1].split("=")[1];
+      }
+      else {
+        userName = "";
+      }
+    }
     else {
-        window.open ("new_chat.html", "","width=500, height=800px, alwaysRaised=yes");
-    }    
+      if (url.indexOf("?user_id=") !== -1) {
+        userId = url.split("=")[1];
+      }
+      else {
+        userId = 0;
+      }
+      userName = "";
+    }
+
+    console.log("@ user_id: " + userId);
+    console.log("@ user_name: " + userName);
+
+    if (window.showModelessDialog) {        // Internet Explorer
+        showModelessDialog ("/new_chat.html", window, "dialogWidth:500px; dialogHeight:800px");
+    }
+    else {
+        window.open ("/new_chat.html", "","width=500, height=800px, alwaysRaised=yes");
+    }
   </script>
+
   </body>
 </html>
