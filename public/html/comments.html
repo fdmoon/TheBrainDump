@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Comments</title>
+    <link rel="icon" sizes="32x32" href="/img/braindump_icon.jpg">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,7 +16,7 @@
         <div class="columns">
           <div class=" column is-two-fifths">
             <h1 class="title">
-              The Brain Dump.
+              <a id="go-main">The Brain Dump.</a>
             </h1>
             <h2 class="subtitle">
               Where you say the things you can't say on Facebook
@@ -44,7 +45,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <textarea class="textarea" placeholder="Leave your comments here"></textarea>
+              <textarea id="comment-text" class="textarea" placeholder="Leave your comments here"></textarea>
             </div>
           </div>
         </div>
@@ -66,4 +67,7 @@
     </div>
   </section>
   </body>
+
+  <script type="text/javascript" src="/js/comments.js"></script>
+
 </html>

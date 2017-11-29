@@ -57,9 +57,15 @@ module.exports = function(app) {
     app.get("/uploads3", /*isAuthenticated,*/ function(req, res) {
         res.sendFile(path.join(__dirname, "../public/upload_S3.html"));
     });
-    
-    app.get("/comments", /*isAuthenticated,*/ function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/comments.html"));
+
+    app.get("/posts", isAuthenticated, function(req, res) {
+        res.render("new_post", {});
+        // res.sendFile(path.join(__dirname, "../public/new_post.html"));
+    });
+
+    app.get("/comments", isAuthenticated, function(req, res) {
+        res.render("comments", {});
+        // res.sendFile(path.join(__dirname, "../public/comments.html"));
     });
 
 };

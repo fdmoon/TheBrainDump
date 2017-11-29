@@ -19,8 +19,7 @@ module.exports = function(app) {
         failureRedirect: '/login-failureRedirect',
         failureFlash: true
     }), function(req, res) {
-        // res.json(`/main?user_id=${req.user.dataValues.id}`);
-        res.json(`/main?user_id=${req.user.dataValues.id}&user_name=${req.user.dataValues.username}`);
+        res.json('/main');
     });
 
     // Route for signing up a user.
@@ -142,7 +141,8 @@ module.exports = function(app) {
     // POST routes - create
     app.post("/api/posts", function(req, res) {
         db.Post.create(req.body).then(function(dbPost) {
-            res.json(dbPost);
+            // res.json(dbPost);
+            res.json('/main');
         }).catch(function(err) {
             res.json(err);
         });
@@ -150,7 +150,8 @@ module.exports = function(app) {
 
     app.post("/api/comments", function(req, res) {
         db.Comment.create(req.body).then(function(dbComment) {
-            res.json(dbComment);
+            res.json('/main');
+            // res.json(dbComment);
         }).catch(function(err) {
             res.json(err);
         });

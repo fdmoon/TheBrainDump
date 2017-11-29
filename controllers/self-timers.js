@@ -42,7 +42,6 @@ module.exports = function(io) {
         });
 
         // console.log(moment().format());
-        // io.emit('chat message', "Timer invoked...");
 
 	}, timePeriod);	// cf. clearInterval(timerId);
 
@@ -72,6 +71,7 @@ module.exports = function(io) {
 	            }
 	        ).then(function(dbPost) {
 	            logToFile("UPDATE (Enough-Likes)", JSON.stringify(post, null, 4), "Success");
+	            io.emit('timer message', "UPDATE (Enough-Likes)");
 	        }).catch(function(err) {
 	            logToFile("UPDATE (Enough-Likes)", JSON.stringify(post, null, 4), "Failure");
 	        });
@@ -97,6 +97,7 @@ module.exports = function(io) {
                 }
             }).then(function(delCnt) {
             	logToFile(title, JSON.stringify(post, null, 4), "Success");
+            	io.emit('timer message', title);
             }).catch(function(err) {
             	logToFile(title, JSON.stringify(post, null, 4), "Failure to delete this");
             });
