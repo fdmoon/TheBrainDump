@@ -91,9 +91,5 @@ module.exports = function(app) {
         // res.sendFile(path.join(__dirname, "../public/comments.html"));
     });
 
-    app.get("/new_post", /*isAuthenticated,*/ function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/new_post.html"));
-    });
-
 };
 

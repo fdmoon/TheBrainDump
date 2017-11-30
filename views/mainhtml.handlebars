@@ -14,7 +14,6 @@
             &nbsp;
           </div>
           <div id="user-div" class="column" style="text-align: right">
-            <a class="button is-primary is-inverted" href="/posts?user_id={{usernow.id}}">New Post</a>
             <a class="button is-primary is-inverted" href="/logout">Logout</a>
             <br>
             <div style="font-size: 1.1em; margin: 5px 0 -5px 0;">
@@ -30,6 +29,12 @@
     <div class="container">
       <div class="tile is-ancestor">
         <div class="tile is-parent is-vertical is-3">
+          <h3 class="is-size-5 has-text-centered">Got something on your mind?</h3>
+          <br>
+          <a class="button is-large is-primary" href="/posts?user_id={{usernow.id}}">Create a New Post</a>
+          <br>
+          <hr>
+          <br>          
           <a class="button is-large is-primary">/All</a>
           <br>
           <a class="button is-large is-primary">/Life</a>
