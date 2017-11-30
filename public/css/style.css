@@ -1,3 +1,80 @@
+/*//////////////////*/
+/* Global Items */
+/*//////////////////*/
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+/*//////////////////*/
+/* Header Stuff     */
+/*//////////////////*/
+
+/*.is-size-5 {
+    font-size: 15.75px;
+}*/
+
+.hero-body, .section {
+    padding: 10px !important;
+}
+
+div.hero-body {
+  height: 90px;
+}
+/*//////////////////*/
+/* Font & Images    */
+/*//////////////////*/
+
+/*#title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 100;
+
+}*/
+
+img {
+    height: 65px;
+    max-width: 100%;
+}
+
+.button.is-large {
+    font-size: 15px !important;
+}
+
+#user-div {
+    margin-top: 1%;
+}
+
+#user-logout {
+  margin-top: -8.5%;
+}
+
+.nav-buttons {
+  font-size: 15px
+}
+
+/*#header-bg {
+    background-color: black;
+    color: #fff;
+}
+
+.hero.is-primary .subtitle {
+    color: rgba(255,255,255,.9);
+    font-size: 13px;
+    font-style: italic;
+}
+
+.button.is-primary.is-inverted {
+    background-color: #fff;
+    color: black;
+}
+
+.button.is-primary.is-inverted {
+    background-color: #fff;
+    color: black;
+}*/
+
+/*//////////////////*/
+/* Modal Forms      */
+/*//////////////////*/
 
 .modal {
     bottom: 0;

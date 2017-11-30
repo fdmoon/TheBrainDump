@@ -6,29 +6,26 @@
     <title>The Brain Dump!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/lux/bulmaswatch.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
-  <section class="hero is-primary is large is bold">
+  <section class="hero is-primary is large is bold" id="header-bg">
     <div class="hero-body">
       <div class="container">
         <div class="columns">
           <div class=" column is-two-fifths">
-            <h1 class="title">
-              The Brain Dump.
-            </h1>
-            <h2 class="subtitle">
-              Where you say the things you can't say on Facebook
-            </h2>
+                <img id="the-brain" src="image/brain_logo_copy.png" height="65" width="auto" alt="your chatty brain">
           </div>
           <div class="column is-two-fifths">
             &nbsp;
           </div>
           <div id="user-div" class="column">
-            <a class="button is-primary is-inverted" id="login">Log In</a>
-            <a class="button is-primary is-inverted" href="/logout">Logout</a>
+            <h1>Hi User!</h1>
             <br>
-            <a href="sign_up.html">New User? Sign Up Here</a>
+            <a id="user-logout" class="button is-primary is-inverted" href="/logout">Logout</a>
           </div>
         </div>
       </div>
@@ -52,17 +49,18 @@
 
         	<h3 class="is-size-5 has-text-centered">Got something on your mind?</h3>
         	<br>
+        	<a class="button is-large is-primary nav-buttons">Create a New Post</a>
         	<a onclick="location.href='/new_post.html'" class="button is-large is-primary">Create a New Post</a>
         	<br>
         	<hr>
 			<br>
-          	<a class="button is-large is-primary">/All</a>
+          	<a class="button is-large is-primary nav-buttons">/All</a>
           	<br>
-          	<a class="button is-large is-primary">/Life</a>
+          	<a class="button is-large is-primary nav-buttons">/Life</a>
           <!-- <br>
           <a class="button is-large is-primary">/Gaming</a> -->
           	<br>
-          	<a class="button is-large is-primary">/Random</a>
+          	<a class="button is-large is-primary nav-buttons">/Random</a>
           <!-- <br>
           <a class="button is-large is-primary">/Funny</a> -->
 
@@ -141,7 +139,7 @@
 
   <script type="text/javascript" src="/js/main.js"></script>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     var userId;
     var userName;
 
@@ -182,7 +180,7 @@
     }
     else {
         window.open ("/new_chat.html", "","width=500, height=800px, alwaysRaised=yes");
-    }
+    } -->
   </script>
 
   </body>

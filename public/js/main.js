@@ -3,6 +3,7 @@ document.getElementById("login").onclick = function () {
 };
 
 
+
 // $.get("/api/posts/", function(data) {
 //   console.log(data);
 //   renderPosts(data);
@@ -27,3 +28,15 @@ document.getElementById("login").onclick = function () {
 //
 //         $("#postHere").append(div);
 //     }
+
+$("#like").on("click", function() {
+  $.post("/api/posts", function(data) {
+
+    like_count: like_count++,
+  },
+  {
+    where: {
+        id: req.params.id
+    }
+  });
+});
