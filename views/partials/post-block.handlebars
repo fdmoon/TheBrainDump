@@ -1,0 +1,49 @@
+	<div class="box">
+	  <article class="media">
+	    <div class="media-content">
+	      <div class="content">
+	        <p style="word-wrap: break-word; max-width: 650px">
+	          <strong>@{{this.username}}</strong>
+	          <small id="lifespan_{{this.id}}">{{this.lifespan}}h-left</small>
+	          <br>
+	          {{this.body}}
+	        </p>
+	      </div>
+	      <nav class="level is-mobile">
+	        <div class="level-left">
+	          <div style="min-width: 60px">
+		          <a class="level-item">
+		            <span onclick="location.href='/comments?post_id={{this.id}}'" class="icon is-small"><i class="fa fa-comments"></i></span>
+		          </a>
+			      </div>
+		        <div style="min-width: 60px;">
+		          <a class="level-item thumbs-up" data-id="{{this.id}}">
+		            <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
+		            <span id="like_{{this.id}}">{{this.like_count}}</span>
+		          </a>
+			      </div>
+			      <div style="min-width: 60px">
+		          <a class="level-item thumbs-down" data-id="{{this.id}}">
+		            <span class="icon is-small"><i class="fa fa-thumbs-down"></i></span>
+		            <span id="dislike_{{this.id}}">{{this.dislike_count}}</span>
+		          </a>
+			      </div>
+	        </div>
+	      </nav>
+
+				<div style="margin-left: 30px">
+          {{#each Comments}}
+		        <p>
+		        	<span><i class="fa fa-angle-double-right"></i></span>
+		          <strong><small>@{{this.author}}</small></strong> {{this.text}}
+		        </p>
+          {{/each}}
+				</div>
+
+	    </div>
+	    <div id="fileview_{{this.id}}" class="media-left">
+	        <img class="post-file" src="{{this.file_location}}" alt="" data-id="{{this.id}}" style="max-width: 250px">
+	    </div>                
+	  </article>
+	</div>
+

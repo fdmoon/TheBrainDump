@@ -1,0 +1,59 @@
+  <section class="hero is-primary is large is bold">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class=" column is-two-fifths">
+            <h1 class="title">
+              <a id="go-chat">The Brain Dump.</a>
+            </h1>
+            <h2 class="subtitle">
+              Where you say the things you can't say on Facebook
+            </h2>
+          </div>
+          <div class="column is-two-fifths">
+            &nbsp;
+          </div>
+          <div id="user-div" class="column" style="text-align: right">
+            <a class="button is-primary is-inverted" href="/posts?user_id={{usernow.id}}">New Post</a>
+            <a class="button is-primary is-inverted" href="/logout">Logout</a>
+            <br>
+            <div style="font-size: 1.1em; margin: 5px 0 -5px 0;">
+              <strong>Hi! {{usernow.username}}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section>
+    <div class="container">
+      <div class="tile is-ancestor">
+        <div class="tile is-parent is-vertical is-3">
+          <a class="button is-large is-primary">/All</a>
+          <br>
+          <a class="button is-large is-primary">/Life</a>
+          <br>
+          <a class="button is-large is-primary">/Gaming</a>
+          <br>
+          <a class="button is-large is-primary">/Random</a>
+          <br>
+          <a class="button is-large is-primary">/Funny</a>
+        </div>
+
+        <div class="tile is-parent is-9 is-primary">
+          <div class="tile is-child is-vertical">
+            {{#each posts}}
+              {{> post-block}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script type="text/javascript" src="/js/mainhtml.js"></script>
+
+  

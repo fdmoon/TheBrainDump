@@ -5,8 +5,12 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+var moment = require("moment");
 
 var isAuthenticated = require("../config/middleware/isAuthenticated");
+
+// Requiring our models
+var db = require("../models");
 
 // Routes
 // =============================================================
@@ -43,7 +47,26 @@ module.exports = function(app) {
     // Here we've add our isAuthenticated middleware to this route.
     // If a user who is not logged in tries to access this route they will be redirected to the signup page
     app.get("/main", isAuthenticated, function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/main.html"));
+        db.User.findAll({}).then(function(dbUser) {
+            db.Post.findAll({
+                include: [db.Comment]
+            }).then(function(dbPost) {
+                for(var i=0; i<dbPost.length; i++) {
+                    var user = dbUser.find(x => x.id === dbPost[i].UserId);
+                    dbPost[i].username = user.username;
+                    dbPost[i].lifespan = dbPost[i].timeout - moment().diff(moment(dbPost[i].createdAt), "hours");
+                }
+
+                var hbsObject = {
+                    usernow: req.user,
+                    posts: dbPost
+                };
+
+                res.render("mainhtml", hbsObject);                
+            });
+        });
+        
+        // res.sendFile(path.join(__dirname, "../public/main.html"));
     });
 
     app.get("/livechat", /*isAuthenticated,*/ function(req, res) {
@@ -57,9 +80,15 @@ module.exports = function(app) {
     app.get("/uploads3", /*isAuthenticated,*/ function(req, res) {
         res.sendFile(path.join(__dirname, "../public/upload_S3.html"));
     });
-    
-    app.get("/comments", /*isAuthenticated,*/ function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/comments.html"));
+
+    app.get("/posts", isAuthenticated, function(req, res) {
+        res.render("new_post", {});
+        // res.sendFile(path.join(__dirname, "../public/new_post.html"));
+    });
+
+    app.get("/comments", isAuthenticated, function(req, res) {
+        res.render("comments", {});
+        // res.sendFile(path.join(__dirname, "../public/comments.html"));
     });
 
     app.get("/new_post", /*isAuthenticated,*/ function(req, res) {
