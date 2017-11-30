@@ -14,7 +14,7 @@ var db = require("../models");
 
 var logFile = path.join(__dirname, "./self-timer.log");
 
-var timePeriod = 60 * 1000;
+var timePeriod = 30 * 1000;
 var enoughLikes = 10;
 var enoughDislikes = 10;
 
@@ -42,14 +42,13 @@ module.exports = function(io) {
         });
 
         // console.log(moment().format());
-        // io.emit('chat message', "Timer invoked...");
 
 	}, timePeriod);	// cf. clearInterval(timerId);
 
 	function checkTimeout(post) {
-    	var diffTime = moment().diff(moment(post.updatedAt), "hours");
+    	var diffTime = moment().diff(moment(post.createdAt), "hours");
 
-    	// console.log(moment(post.updatedAt).format());
+    	// console.log(moment(post.createdAt).format());
     	// console.log(diffTime);
 
     	if(diffTime > post.timeout) {
@@ -72,6 +71,7 @@ module.exports = function(io) {
 	            }
 	        ).then(function(dbPost) {
 	            logToFile("UPDATE (Enough-Likes)", JSON.stringify(post, null, 4), "Success");
+	            io.emit('timer message', "UPDATE (Enough-Likes)");
 	        }).catch(function(err) {
 	            logToFile("UPDATE (Enough-Likes)", JSON.stringify(post, null, 4), "Failure");
 	        });
@@ -97,6 +97,7 @@ module.exports = function(io) {
                 }
             }).then(function(delCnt) {
             	logToFile(title, JSON.stringify(post, null, 4), "Success");
+            	io.emit('timer message', title);
             }).catch(function(err) {
             	logToFile(title, JSON.stringify(post, null, 4), "Failure to delete this");
             });
