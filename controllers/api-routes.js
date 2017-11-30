@@ -4,10 +4,10 @@
 
 // Dependencies
 // =============================================================
+var passport = require("../config/passport");
 
 // Requiring our models
 var db = require("../models");
-var passport = require("../config/passport");
 
 // Routes
 // =============================================================
@@ -82,7 +82,7 @@ module.exports = function(app) {
                 username: req.params.name
             },
             include: [{
-               model: db.Post,
+                model: db.Post,
                 include: [db.Comment]
             }]
         }).then(function(dbUser) {

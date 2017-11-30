@@ -14,7 +14,7 @@ var db = require("../models");
 
 var logFile = path.join(__dirname, "./self-timer.log");
 
-var timePeriod = 60 * 1000;
+var timePeriod = 30 * 1000;
 var enoughLikes = 10;
 var enoughDislikes = 10;
 
@@ -46,9 +46,9 @@ module.exports = function(io) {
 	}, timePeriod);	// cf. clearInterval(timerId);
 
 	function checkTimeout(post) {
-    	var diffTime = moment().diff(moment(post.updatedAt), "hours");
+    	var diffTime = moment().diff(moment(post.createdAt), "hours");
 
-    	// console.log(moment(post.updatedAt).format());
+    	// console.log(moment(post.createdAt).format());
     	// console.log(diffTime);
 
     	if(diffTime > post.timeout) {
