@@ -14,11 +14,8 @@ var passport = require("../config/passport");
 module.exports = function(app) {
     // Using the passport.authenticate middleware with our local strategy.
     // If the user has valid login credentials, send them to the main page.
-    // Otherwise the user will be sent an errorz
-    app.post("/api/login", passport.authenticate("local", {
-        failureRedirect: '/login-failureRedirect',
-        failureFlash: true
-    }), function(req, res) {
+    // Otherwise the user will be sent an error
+    app.post("/api/login", passport.authenticate("local"), function(req, res) {
         // res.json(`/main?user_id=${req.user.dataValues.id}`);
         res.json(`/main?user_id=${req.user.dataValues.id}&user_name=${req.user.dataValues.username}`);
     });
