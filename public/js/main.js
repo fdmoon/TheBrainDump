@@ -31,7 +31,6 @@ document.getElementById("login").onclick = function () {
 
 $("#like").on("click", function() {
   $.post("/api/posts", function(data) {
-
     like_count: like_count++,
   },
   {
@@ -39,4 +38,5 @@ $("#like").on("click", function() {
         id: req.params.id
     }
   });
+
 });

@@ -39,6 +39,26 @@ img {
     font-size: 15px !important;
 }
 
+#funny {
+  background-color: red;
+}
+
+#random {
+  background-color: red;
+}
+
+#gaming {
+  background-color: red;
+}
+
+#life {
+  background-color: red;
+}
+
+#all {
+  background-color: red;
+}
+
 #user-div {
     margin-top: 1%;
 }
