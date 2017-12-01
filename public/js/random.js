@@ -8,7 +8,7 @@ $(document).ready(function() {
     location.href = "/funny";
   });
 
-  $("#random-category").on("click", function() {
+  $("#random").on("click", function() {
     location.href = "/random";
   });
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
     location.href = "/life";
   });
 
-    $("#go-chat").on("click", function() {
+    $("#the-brain go-chat").on("click", function() {
 	    if (window.showModelessDialog) {        // Internet Explorer
 	        showModelessDialog ("/new_chat.html", window, "dialogWidth:500px; dialogHeight:800px");
 	    }

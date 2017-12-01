@@ -34,6 +34,26 @@ div.hero-body {
     font-size: 15px !important;
 }
 
+#all {
+  background-color: red !important;
+}
+
+#life {
+  background-color: red !important;
+}
+
+#gaming {
+  background-color: red !important;
+}
+
+#random {
+  background-color: red !important;
+}
+
+#funny {
+  background-color: red !important;
+}
+
 #user-div {
     margin-top: 1%;
 }
