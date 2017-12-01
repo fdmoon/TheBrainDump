@@ -55,7 +55,7 @@ div.hero-body {
 /* Image Stuff      */
 /*//////////////////*/
 
-img {
+img#the-brain {
     height: 65px;
     max-width: 100%;
 }
