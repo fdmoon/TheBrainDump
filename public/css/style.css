@@ -5,13 +5,15 @@
   font-family: 'Lato', sans-serif;
 }
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
 /*//////////////////*/
 /* Header Stuff     */
 /*//////////////////*/
-
-/*.is-size-5 {
-    font-size: 15.75px;
-}*/
 
 .hero-body, .section {
     padding: 10px !important;
@@ -20,20 +22,13 @@
 div.hero-body {
   height: 90px;
 }
-/*//////////////////*/
-/* Font & Images    */
-/*//////////////////*/
 
-/*#title {
-  font-family: 'Lato', sans-serif;
-  font-weight: 100;
-
-}*/
-
-img {
-    height: 65px;
-    max-width: 100%;
+#color-me {
+  background-color: white
 }
+/*//////////////////*/
+/* Font             */
+/*//////////////////*/
 
 .button.is-large {
     font-size: 15px !important;
@@ -51,26 +46,32 @@ img {
   font-size: 15px
 }
 
-/*#header-bg {
-    background-color: black;
-    color: #fff;
+
+#wrapper {
+  flex: 1;
 }
 
-.hero.is-primary .subtitle {
-    color: rgba(255,255,255,.9);
-    font-size: 13px;
-    font-style: italic;
+/*//////////////////*/
+/* Image Stuff      */
+/*//////////////////*/
+
+img {
+    height: 65px;
+    max-width: 100%;
 }
 
-.button.is-primary.is-inverted {
-    background-color: #fff;
-    color: black;
+/*//////////////////*/
+/* Footer Stuff    */
+/*//////////////////*/
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-.button.is-primary.is-inverted {
-    background-color: #fff;
-    color: black;
-}*/
+.Site-content {
+  flex: 1;
+}
 
 /*//////////////////*/
 /* Modal Forms      */
