@@ -49,6 +49,7 @@ module.exports = function(app) {
     app.get("/main", isAuthenticated, function(req, res) {
         db.User.findAll({}).then(function(dbUser) {
             db.Post.findAll({
+                order: [['createdAt', 'DESC']],
                 include: [db.Comment]
             }).then(function(dbPost) {
                 for(var i=0; i<dbPost.length; i++) {
@@ -86,14 +87,15 @@ module.exports = function(app) {
         // res.sendFile(path.join(__dirname, "../public/new_post.html"));
     });
 
-    // app.get("/all", isAuthenticated, function(req, res) {
-    //     res.render("all", {});
-    //     // res.sendFile(path.join(__dirname, "../public/new_post.html"));
-    // });
+    app.get("/comments", isAuthenticated, function(req, res) {
+        res.render("comments", {});
+        // res.sendFile(path.join(__dirname, "../public/comments.html"));
+    });
 
     app.get("/all", isAuthenticated, function(req, res) {
       db.User.findAll({}).then(function(dbUser) {
           db.Post.findAll({
+              order: [['createdAt', 'DESC']],
               include: [db.Comment]
           }).then(function(dbPost) {
               for(var i=0; i<dbPost.length; i++) {
@@ -117,6 +119,7 @@ module.exports = function(app) {
       db.User.findAll({}).then(function(dbUser) {
           db.Post.findAll({
               where: {category: "life"},
+              order: [['createdAt', 'DESC']],
               include: [db.Comment]
           }).then(function(dbPost) {
               for(var i=0; i<dbPost.length; i++) {
@@ -139,6 +142,7 @@ module.exports = function(app) {
       db.User.findAll({}).then(function(dbUser) {
           db.Post.findAll({
               where: {category: "funny"},
+              order: [['createdAt', 'DESC']],
               include: [db.Comment]
           }).then(function(dbPost) {
               for(var i=0; i<dbPost.length; i++) {
@@ -162,6 +166,7 @@ module.exports = function(app) {
       db.User.findAll({}).then(function(dbUser) {
           db.Post.findAll({
               where: {category: "gaming"},
+              order: [['createdAt', 'DESC']],
               include: [db.Comment]
           }).then(function(dbPost) {
               for(var i=0; i<dbPost.length; i++) {
@@ -185,6 +190,7 @@ module.exports = function(app) {
       db.User.findAll({}).then(function(dbUser) {
           db.Post.findAll({
               where: {category: "random"},
+              order: [['createdAt', 'DESC']],
               include: [db.Comment]
           }).then(function(dbPost) {
               for(var i=0; i<dbPost.length; i++) {
@@ -202,26 +208,6 @@ module.exports = function(app) {
           });
       });
         // res.sendFile(path.join(__dirname, "../public/new_post.html"));
-    });
-
-    app.get("/funny", isAuthenticated, function(req, res) {
-        res.render("funny", {});
-        // res.sendFile(path.join(__dirname, "../public/new_post.html"));
-    });
-
-    app.get("/gaming", isAuthenticated, function(req, res) {
-        res.render("gaming", {});
-        // res.sendFile(path.join(__dirname, "../public/new_post.html"));
-    });
-
-    app.get("/random", isAuthenticated, function(req, res) {
-        res.render("random", {});
-        // res.sendFile(path.join(__dirname, "../public/new_post.html"));
-    });
-
-    app.get("/comments", isAuthenticated, function(req, res) {
-        res.render("comments", {});
-        // res.sendFile(path.join(__dirname, "../public/comments.html"));
     });
 
 };
