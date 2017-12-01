@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $("#all-category").on("click", function() {
+  $("#all").on("click", function() {
     location.href = "/main";
   });
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
     location.href = "/life";
   });
 
-    $("#go-chat").on("click", function() {
+    $("#the-brain go-chat").on("click", function() {
 	    if (window.showModelessDialog) {        // Internet Explorer
 	        showModelessDialog ("/new_chat.html", window, "dialogWidth:500px; dialogHeight:800px");
 	    }

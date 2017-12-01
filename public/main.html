@@ -36,22 +36,26 @@
     <div class="container">
       <div class="tile is-ancestor">
         <div class="tile is-parent is-vertical is-3">
-        	<h3 class="is-size-5 has-text-centered">Got something on your mind?</h3>
-        	<br>
-        	<a class="button is-large is-primary nav-buttons">Create a New Post</a>
-        	<a onclick="location.href='/new_post.html'" class="button is-large is-primary">Create a New Post</a>
-        	<br>
+
+          <h3 class="is-size-5 has-text-centered">Got something on your mind?</h3>
+          <br>
+
+          <a onclick="location.href='/new_post.html'" class="button is-large is-primary">Create a New Post</a>
+          <br>
+
+          <a class="button is-large is-primary">/All</a>
+          <br>
+          <a class="button is-large is-primary">/Life</a>
+          <br>
+          <a class="button is-large is-primary">/Gaming</a>
+          <br>
+          <a class="button is-large is-primary">/Random</a>
+          <br>
+          <a class="button is-large is-primary">/Funny</a>
+
         	<hr>
 			<br>
-          	<a class="button is-large is-primary nav-buttons">/All</a>
-          	<br>
-          	<a class="button is-large is-primary nav-buttons">/Life</a>
-          <!-- <br>
-          <a class="button is-large is-primary">/Gaming</a> -->
-          	<br>
-          	<a class="button is-large is-primary nav-buttons">/Random</a>
-          <!-- <br>
-          <a class="button is-large is-primary">/Funny</a> -->
+
         </div>
         <div class="tile is-parent is-8 is-primary">
           <div class="tile is-child is-vertical">
@@ -73,13 +77,13 @@
                   <nav class="level is-mobile">
                     <div class="level-left">
                       <a class="level-item">
-                        <span onclick="location.href='/comments.html'" class="icon is-small"><i class="fa fa-comments"></i></span>
+                        <span class="icon is-small"><i class="fa fa-comments"></i></span>
                       </a>
                       <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
+                        <span class="icon is-small"><i id="like" class="fa fa-thumbs-up"></i></span>
                       </a>
                       <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-thumbs-down"></i></span>
+                        <span class="icon is-small"><i id="dislike"class="fa fa-thumbs-down"></i></span>
                       </a>
                     </div>
                   </nav>
@@ -104,14 +108,16 @@
                   <nav class="level is-mobile">
                     <div class="level-left">
                       <a class="level-item">
-                        <span onclick="location.href='/comments.html'" class="icon is-small"><i class="fa fa-comments"></i></span>
+                        <span class="icon is-small"><i class="fa fa-comments"></i></span>
                       </a>
                       <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
+                        <span class="icon is-small"><i id="like" class="fa fa-thumbs-up"></i></span>
                       </a>
                       <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-thumbs-down"></i></span>
+                        <span class="icon is-small"><i id="dislike" class="fa fa-thumbs-down"></i></span>
                       </a>
+                      <div class = "numberOfLikes" id="numLikes">
+                      </div>
                     </div>
                   </nav>
                 </div>
@@ -171,3 +177,39 @@
 
   </body>
 </html>
+<!--
+<script>
+//creating variables for html elements
+  var like = document.getElementById("like");
+  var dislike = document.getElementById("dislike");
+  //creating variable for number of likes
+  var likesNmbr = 0;
+  //console logs number of likes
+  console.log("number of likes " + likesNmbr);
+  //supposed to put number of likes to html (doesnt work tho)
+  document.getElementById("numLikes").innerHtml = likesNmbr;
+
+//onclick function if like button gets clicked, using like variable above retrieving the like html element
+  like.onclick = function(){
+//increments number of likes
+    likesNmbr++;
+    //console logs number of likes
+    console.log("number of likes: " + likesNmbr);
+    //supposed to put number of likes to html (doesnt work tho)
+    document.getElementById("numLikes").innerHtml = likesNmbr;
+  };
+
+//if user clicks on the dislike button
+  dislike.onclick = function(){
+    //decrease number of likes
+    likesNmbr- -;
+    console.log("number of likes: " + likesNmbr);
+    //display number of likes
+    document.getElementById("numLikes").innerHtml = likesNmbr;
+
+    //if likes number goes below -10
+    if(likesNmbr === -10){
+      //code to delete post
+    }
+  };
+</script> -->

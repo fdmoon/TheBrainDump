@@ -1,0 +1,64 @@
+<section class="hero is-primary is large is bold">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class=" column is-two-fifths">
+          <div class="title">
+            <a id="go-chat">
+              <img id="the-brain go-chat" src="image/brain_logo_copy.png" height="65" width="auto" alt="your chatty brain">
+            </a>
+          </div>
+        </div>
+        <div class="column is-two-fifths">
+          &nbsp;
+        </div>
+        <div id="user-div" class="column" style="text-align: right">
+          <a class="button is-primary is-inverted" href="/logout">Logout</a>
+          <br>
+          <div style="font-size: 1.1em; margin: 5px 0 -5px 0;">
+            <strong>Hi {{usernow.username}}!</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+<section class="Site-content">
+  <div class="container" id="wrapper">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent is-vertical is-3">
+        <h3 class="is-size-5 has-text-centered">Got something on your mind?</h3>
+        <br>
+        <a class="button is-large is-primary" href="/posts?user_id={{usernow.id}}">Create a New Post</a>
+        <br>
+        <hr>
+        <br>
+
+        <a class="button is-large is-primary" id="all">/All</a>
+        <br>
+        <a class="button is-large is-primary" id="life-category">/Life</a>
+        <br>
+        <a class="button is-large is-primary" id="gaming-category">/Gaming</a>
+        <br>
+        <a class="button is-large is-primary" id="random-category">/Random</a>
+        <br>
+        <a class="button is-large is-primary" id="funny-category">/Funny</a>
+      </div>
+
+      <div class="tile is-parent is-9 is-primary">
+        <div class="tile is-child is-vertical">
+          {{#each posts}}
+            {{> post-block}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="has-text-centered">
+  Lovingly designed and built by: Felix Moon | Jacob Chaffee | Jenna King | Ryan Hayden | Neil Dhand
+</footer>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<script type="text/javascript" src="/js/allhtml.js"></script>

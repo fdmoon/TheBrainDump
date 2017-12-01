@@ -4,18 +4,18 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: false,
             len: [1]
-        }, 
+        },
         category: {
             type: DataTypes.STRING,
             allowNull: false
-        }, 
+        },
         file_location: {
             type: DataTypes.STRING,
-        }, 
+        },
         timeout: {
             type: DataTypes.INTEGER,
             defaultValue: 24
-        }, 
+        },
         shared: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
         dislike_count: {
             type: DataTypes.INTEGER,
             defaultValue: 0
-        }, 
+        },
         extended: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
@@ -50,4 +50,3 @@ module.exports = function(sequelize, DataTypes) {
 
     return Post;
 };
-
