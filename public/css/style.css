@@ -1,9 +1,9 @@
 /*//////////////////*/
 /* Global Items */
 /*//////////////////*/
-* {
+/** {
   font-family: 'Lato', sans-serif;
-}
+}*/
 
 body {
   display: flex;
