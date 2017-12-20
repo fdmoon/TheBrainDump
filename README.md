@@ -12,3 +12,15 @@ Our idea is to make a bulletin board/reddit kind of social media app for all the
 * Jacob Chaffee: Frontend 
 * Jenna King: Backend / Troubleshoot
 
+![Page-1](public/doc/thebraindump-page-1.png)
+
+![Page-2](public/doc/thebraindump-page-2.png)
+
+![Page-3](public/doc/thebraindump-page-3.png)
+
+![Page-4](public/doc/thebraindump-page-4.png)
+
+![Page-5](public/doc/thebraindump-page-5.png)
+
+![Page-6](public/doc/thebraindump-page-6.png)
+
